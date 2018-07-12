@@ -1,5 +1,6 @@
 package com.menu.richard.menuapp.Entities;
 
+import android.graphics.Bitmap;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -8,18 +9,26 @@ import java.util.List;
 import java.util.Map;
 
 public class Meal {
-    private String pathToImage;
+    private Bitmap image;
     private Category category;
     private String totalTime;
     private Map<Ingredient, Pair<Float, Unit>> ingredients = new HashMap<>();
     private List<String> instructions = new ArrayList<>();
 
-    public String getPathToImage() {
-        return pathToImage;
+    public Meal(Bitmap image, Category category, String totalTime, Map<Ingredient, Pair<Float, Unit>> ingredients, List<String> instructions) {
+        this.image = image;
+        this.category = category;
+        this.totalTime = totalTime;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
     }
 
-    public void setPathToImage(String pathToImage) {
-        this.pathToImage = pathToImage;
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public Category getCategory() {
@@ -52,14 +61,6 @@ public class Meal {
 
     public void setTotalTime(String totalTime) {
         this.totalTime = totalTime;
-    }
-
-    public Meal(String pathToImage, Category category, String totalTime, Map<Ingredient, Pair<Float, Unit>> ingredients, List<String> instructions) {
-        this.pathToImage = pathToImage;
-        this.category = category;
-        this.totalTime = totalTime;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
     }
 
     public void addIngredient(Ingredient ingredient, Pair<Float, Unit> amount) {

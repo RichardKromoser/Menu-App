@@ -58,12 +58,19 @@ public class DatabaseAccess {
      */
     public List<String> getUnits() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM Unit", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
+        Cursor cursor = database.rawQuery("select * from Unit", null);
+
+        if (cursor.moveToFirst()) {
+            System.out.print("HIER");
+            //Loop through the table rows
+            do {
+                list.add(cursor.getString(1));
+            } while (cursor.moveToNext());
         }
+        /*while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(cursor.getColumnIndex("name")));
+            cursor.moveToNext();
+        }*/
         cursor.close();
         return list;
     }

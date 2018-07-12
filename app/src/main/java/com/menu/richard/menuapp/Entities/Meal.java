@@ -1,7 +1,5 @@
 package com.menu.richard.menuapp.Entities;
 
-import com.menu.richard.menuapp.NoEntities.Amount;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

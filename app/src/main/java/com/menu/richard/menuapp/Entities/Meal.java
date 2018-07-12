@@ -1,14 +1,16 @@
 package com.menu.richard.menuapp.Entities;
 
-import com.menu.richard.menuapp.NoEntities.Category;
+import com.menu.richard.menuapp.NoEntities.Amount;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Meal {
     private String pathToImage;
     private Category category;
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private Map<Ingredient, Amount> ingredients = new HashMap<>();
     private List<String> instructions = new ArrayList<>();
 
     public String getPathToImage() {
@@ -27,11 +29,11 @@ public class Meal {
         this.category = category;
     }
 
-    public List<Ingredient> getIngredients() {
+    public Map<Ingredient, Amount> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(Map<Ingredient, Amount> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -43,15 +45,15 @@ public class Meal {
         this.instructions = instructions;
     }
 
-    public Meal(String pathToImage, Category category, List<Ingredient> ingredients, List<String> instructions) {
+    public Meal(String pathToImage, Category category, Map<Ingredient, Amount> ingredients, List<String> instructions) {
         this.pathToImage = pathToImage;
         this.category = category;
         this.ingredients = ingredients;
         this.instructions = instructions;
     }
 
-    public void addIngredient(Ingredient ingredient) {
-        this.ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient, Amount amount) {
+        this.ingredients.put(ingredient, amount);
     }
 
     public void addInstruction(String instruction) {

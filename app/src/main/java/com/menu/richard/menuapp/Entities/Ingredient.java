@@ -2,7 +2,7 @@ package com.menu.richard.menuapp.Entities;
 
 public class Ingredient {
     private String name;
-    private String amount;
+    private FoodType foodType;
 
     public String getName() {
         return name;
@@ -12,16 +12,16 @@ public class Ingredient {
         this.name = name;
     }
 
-    public String getAmount() {
-        return amount;
+    public FoodType getFoodType() {
+        return foodType;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
     }
 
-    public Ingredient(String name, String amount) {
+    public Ingredient(String name, FoodType foodType) {
         this.name = name;
-        this.amount = amount;
+        this.foodType = foodType;
     }
 }

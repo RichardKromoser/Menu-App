@@ -1,4 +1,4 @@
-package com.menu.richard.menuapp.NoEntities;
+package com.menu.richard.menuapp.Entities;
 
 public enum Category {
     BREAKFAST,

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.menu.richard.menuapp.Entities.Unit;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,23 +56,84 @@ public class DatabaseAccess {
     /**
      * Read all units from the database.
      *
-     * @return a List of Units
+     * @return a List of UnitsUnit.valueOf(cursor.getString(cursor.getColumnIndex("name")))
      */
-    public List<String> getUnits() {
-        List<String> list = new ArrayList<>();
+    public List<Unit> getUnits() {
+        List<Unit> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("select * from Unit", null);
 
-        if (cursor.moveToFirst()) {
-            System.out.print("HIER");
-            //Loop through the table rows
-            do {
-                list.add(cursor.getString(1));
-            } while (cursor.moveToNext());
+        while (cursor.moveToNext()) {
+            list.add(Unit.valueOf(cursor.getString(cursor.getColumnIndex("name"))));
         }
-        /*while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(cursor.getColumnIndex("name")));
+
+        cursor.close();
+        return list;
+    }
+
+    /**
+     * Read all categories from the database.
+     *
+     * @return a List of Categories
+     */
+    public List<String> getCategories() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Category", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
             cursor.moveToNext();
-        }*/
+        }
+        cursor.close();
+        return list;
+    }
+
+    /**
+     * Read all types of food from the database.
+     *
+     * @return a List of FoodTypes
+     */
+    public List<String> getFoodTypes() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM FoodType", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    /**
+     * Read all ingredients from the database.
+     *
+     * @return a List of Ingredients
+     */
+    public List<String> getIngredients() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Ingredient", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    /**
+     * Read all meals from the database.
+     *
+     * @return a List of Meals
+     */
+    public List<String> getMeals() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Meal", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
         cursor.close();
         return list;
     }

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
+import com.menu.richard.menuapp.Entities.Unit;
 
 import java.util.List;
 
@@ -28,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
         this.listView = (ListView) findViewById(R.id.listView);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        List<String> quotes = databaseAccess.getUnits();
+        List<Unit> units = databaseAccess.getUnits();
+        System.out.println("MAIN");
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes);
+        ArrayAdapter<Unit> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, units);
         this.listView.setAdapter(adapter);
 
     }

@@ -1,5 +1,7 @@
 package com.menu.richard.menuapp.Entities;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +10,8 @@ import java.util.Map;
 public class Meal {
     private String pathToImage;
     private Category category;
-    private Map<Ingredient, Amount> ingredients = new HashMap<>();
+    private String totalTime;
+    private Map<Ingredient, Pair<Float, Unit>> ingredients = new HashMap<>();
     private List<String> instructions = new ArrayList<>();
 
     public String getPathToImage() {
@@ -27,11 +30,11 @@ public class Meal {
         this.category = category;
     }
 
-    public Map<Ingredient, Amount> getIngredients() {
+    public Map<Ingredient, Pair<Float, Unit>> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<Ingredient, Amount> ingredients) {
+    public void setIngredients(Map<Ingredient, Pair<Float, Unit>> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -43,14 +46,23 @@ public class Meal {
         this.instructions = instructions;
     }
 
-    public Meal(String pathToImage, Category category, Map<Ingredient, Amount> ingredients, List<String> instructions) {
+    public String getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(String totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public Meal(String pathToImage, Category category, String totalTime, Map<Ingredient, Pair<Float, Unit>> ingredients, List<String> instructions) {
         this.pathToImage = pathToImage;
         this.category = category;
+        this.totalTime = totalTime;
         this.ingredients = ingredients;
         this.instructions = instructions;
     }
 
-    public void addIngredient(Ingredient ingredient, Amount amount) {
+    public void addIngredient(Ingredient ingredient, Pair<Float, Unit> amount) {
         this.ingredients.put(ingredient, amount);
     }
 

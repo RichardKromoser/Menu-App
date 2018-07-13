@@ -2,8 +2,7 @@ package com.menu.richard.menuapp.Entities;
 
 public enum Category {
     BREAKFAST("Frühstück"),
-    LUNCH("Mittagessen"),
-    DINNER("Abendessen"),
+    MAIN_DISH("Hauptgericht"),
     SNACK("Snack");
 
     private final String full;

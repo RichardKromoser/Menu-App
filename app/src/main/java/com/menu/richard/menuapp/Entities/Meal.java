@@ -11,16 +11,26 @@ import java.util.Map;
 public class Meal {
     private Bitmap image;
     private Category category;
+    private String name;
     private String totalTime;
     private Map<Ingredient, Pair<Float, Unit>> ingredients = new HashMap<>();
     private List<String> instructions = new ArrayList<>();
 
-    public Meal(Bitmap image, Category category, String totalTime, Map<Ingredient, Pair<Float, Unit>> ingredients, List<String> instructions) {
+    public Meal(Bitmap image, Category category, String name, String totalTime, Map<Ingredient, Pair<Float, Unit>> ingredients, List<String> instructions) {
         this.image = image;
         this.category = category;
+        this.name = name;
         this.totalTime = totalTime;
         this.ingredients = ingredients;
         this.instructions = instructions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Bitmap getImage() {

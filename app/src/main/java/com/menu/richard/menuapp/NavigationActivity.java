@@ -77,10 +77,6 @@ public class NavigationActivity extends AppCompatActivity
             // Handle the recipe index action
         } else if (id == R.id.nav_ingredient) {
             // Handle the ingredient list action
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

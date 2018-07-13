@@ -1,16 +1,31 @@
 package com.menu.richard.menuapp.Entities;
 
 public enum Unit {
-    GRAM,
-    MILLILITER,
-    PIECE,
-    TEASPOON,
-    TABLESPOON;
 
-    // Convenience names
-    public static final Unit g = GRAM;
-    public static final Unit ml = MILLILITER;
-    public static final Unit st = PIECE;
-    public static final Unit tl = TEASPOON;
-    public static final Unit EL = TABLESPOON;
+    GRAM ("Gramm", "g"),
+    MILLILITER("Milliliter", "ml"),
+    PIECE("Stück", "st"),
+    TEASPOON("Teelöffel", "tl"),
+    TABLESPOON("Esslöffel", "EL");
+
+    private final String full;
+    private final String shortName;
+
+    Unit(String full, String shortName) {
+        this.full = full;
+        this.shortName = shortName;
+    }
+
+    public String getFull() {
+        return full;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    @Override
+    public String toString() {
+        return this.getShortName();
+    }
 }

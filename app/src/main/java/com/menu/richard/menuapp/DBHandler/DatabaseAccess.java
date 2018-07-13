@@ -61,7 +61,6 @@ public class DatabaseAccess {
     public List<Unit> getUnits() {
         List<Unit> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("select * from Unit", null);
-
         while (cursor.moveToNext()) {
             list.add(Unit.valueOf(cursor.getString(cursor.getColumnIndex("name"))));
         }

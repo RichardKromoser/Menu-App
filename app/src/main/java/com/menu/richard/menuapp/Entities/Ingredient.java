@@ -20,6 +20,11 @@ public class Ingredient {
         this.foodType = foodType;
     }
 
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
     public Ingredient(String name, FoodType foodType) {
         this.name = name;
         this.foodType = foodType;

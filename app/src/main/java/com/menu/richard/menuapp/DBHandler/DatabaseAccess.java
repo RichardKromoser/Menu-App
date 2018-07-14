@@ -9,8 +9,11 @@ import com.menu.richard.menuapp.Entities.FoodType;
 import com.menu.richard.menuapp.Entities.Ingredient;
 import com.menu.richard.menuapp.Entities.Unit;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.transform.Source;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -112,9 +115,10 @@ public class DatabaseAccess {
      */
     public List<Ingredient> getIngredients() {
         List<Ingredient> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM Ingredient", null);
+        Cursor cursor = database.rawQuery("select * from Ingredient", null);
         while (cursor.moveToNext()) {
-            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("name")), FoodType.values()[cursor.getColumnIndex("foodtype")]));
+            Ingredient i = new Ingredient(cursor.getString(cursor.getColumnIndex("name")), FoodType.values()[cursor.getInt(cursor.getColumnIndex("foodtype"))]);
+            list.add(i);
         }
         cursor.close();
         return list;

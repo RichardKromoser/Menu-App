@@ -31,8 +31,8 @@ public class IngredientList extends Fragment {
     private DatabaseAccess d;
 
     @SuppressLint("ValidFragment")
-    public IngredientList(DatabaseAccess databaseAccess) {
-        this.d =databaseAccess;
+    public IngredientList(DatabaseAccess d) {
+        this.d = d;
     }
 
     @Nullable
@@ -45,7 +45,8 @@ public class IngredientList extends Fragment {
         ArrayAdapter<Ingredient> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ingredients);
         gridView.setAdapter(adapter);
         //returning our layout file
-        return inflater.inflate(R.layout.ingredient_list, container, false);
+        return view;
+       // return inflater.inflate(R.layout.ingredient_list, container, false);
     }
 
 

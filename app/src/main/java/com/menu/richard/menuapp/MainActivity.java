@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
 
     private void displaySelectedScreen(int itemId) {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-
+        databaseAccess.open();
         //creating fragment object
         Fragment fragment = null;
 

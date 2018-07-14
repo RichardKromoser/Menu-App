@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/textViewIngredientFruit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ingredient_header"
+        android:layout_height="wrap_content"
         android:text="@string/ingredient_fruit"
         android:textSize="@dimen/ingredient_header_text"
         />
@@ -21,10 +21,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@id/textViewIngredientFruit"/>
+        android:background="@android:color/darker_gray"/>
 
-    <GridView
+    <com.menu.richard.menuapp.ExpandableHeightGridView
         android:id="@+id/gridViewIngredientFruit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,23 +33,21 @@
         android:numColumns="2"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
-        android:layout_below="@id/textViewIngredientFruit"/>
+        android:isScrollContainer="false"/>
 
     <TextView
         android:id="@+id/textViewIngredientVegetable"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ingredient_header"
         android:text="@string/ingredient_vegetable"
-        android:textSize="@dimen/ingredient_header_text"
-        android:layout_below="@id/gridViewIngredientFruit"/>
+        android:textSize="@dimen/ingredient_header_text"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@id/textViewIngredientVegetable"/>
+        android:background="@android:color/darker_gray"/>
 
-    <GridView
+    <com.menu.richard.menuapp.ExpandableHeightGridView
         android:id="@+id/gridViewIngredientVegetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +57,79 @@
         android:numColumns="2"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
-        android:layout_below="@id/textViewIngredientVegetable"/>
+        android:isScrollContainer="false"/>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textViewIngredientProtein"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ingredient_header"
+        android:text="@string/ingredient_protein"
+        android:textSize="@dimen/ingredient_header_text"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <com.menu.richard.menuapp.ExpandableHeightGridView
+        android:id="@+id/gridViewIngredientProtein"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="20dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:isScrollContainer="false"/>
+
+    <TextView
+        android:id="@+id/textViewIngredientPantry"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ingredient_header"
+        android:text="@string/ingredient_pantry"
+        android:textSize="@dimen/ingredient_header_text"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <com.menu.richard.menuapp.ExpandableHeightGridView
+        android:id="@+id/gridViewIngredientPantry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="20dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:isScrollContainer="false"/>
+
+    <TextView
+        android:id="@+id/textViewIngredientSpice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ingredient_header"
+        android:text="@string/ingredient_spice"
+        android:textSize="@dimen/ingredient_header_text"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <com.menu.richard.menuapp.ExpandableHeightGridView
+        android:id="@+id/gridViewIngredientSpice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="20dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:isScrollContainer="false"/>
+
+</LinearLayout>
 </ScrollView>

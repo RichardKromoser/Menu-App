@@ -42,16 +42,38 @@ public class IngredientList extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ingredient_list,container,false);
 
-        GridView gridViewFruits = (GridView) view.findViewById(R.id.gridViewIngredientFruit);
+        ExpandableHeightGridView gridViewFruits = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientFruit);
+        ExpandableHeightGridView gridViewVegetables = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientVegetable);
+        ExpandableHeightGridView gridViewProteins = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientProtein);
+        ExpandableHeightGridView gridViewPantries = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientPantry);
+        ExpandableHeightGridView gridViewSpices = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientSpice);
 
-        GridView gridViewVegetables = (GridView) view.findViewById(R.id.gridViewIngredientVegetable);
+        gridViewFruits.setExpanded(true);
+        gridViewVegetables.setExpanded(true);
+        gridViewProteins.setExpanded(true);
+        gridViewPantries.setExpanded(true);
+        gridViewSpices.setExpanded(true);
+
         List<Ingredient> ingredients = d.getIngredients();
-        List<Unit> units = d.getUnits();
 
-        ArrayAdapter<Ingredient> adapterFruits = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ingredients);
-        ArrayAdapter<Unit> adapterVegetables = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, units);
+        List<Ingredient> fruits = getAllIngredientsFromFoodType(ingredients, FoodType.FRUIT);
+        List<Ingredient> vegetables = getAllIngredientsFromFoodType(ingredients, FoodType.VEGETABLE);
+        List<Ingredient> proteins = getAllIngredientsFromFoodType(ingredients, FoodType.PROTEIN);
+        List<Ingredient> pantries = getAllIngredientsFromFoodType(ingredients, FoodType.PANTRY);
+        List<Ingredient> spices = getAllIngredientsFromFoodType(ingredients, FoodType.SPICE);
+
+        ArrayAdapter<Ingredient> adapterFruits = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, fruits);
+        ArrayAdapter<Ingredient> adapterVegetables = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, vegetables);
+        ArrayAdapter<Ingredient> adapterProteins = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, proteins);
+        ArrayAdapter<Ingredient> adapterPantries = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, pantries);
+        ArrayAdapter<Ingredient> adapterSpices = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, spices);
+
         gridViewFruits.setAdapter(adapterFruits);
         gridViewVegetables.setAdapter(adapterVegetables);
+        gridViewProteins.setAdapter(adapterProteins);
+        gridViewPantries.setAdapter(adapterPantries);
+        gridViewSpices.setAdapter(adapterSpices);
+
         //returning our layout file
         return view;
        // return inflater.inflate(R.layout.ingredient_list, container, false);
@@ -63,5 +85,15 @@ public class IngredientList extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Zutatenliste");
+    }
+
+    private List<Ingredient> getAllIngredientsFromFoodType(List<Ingredient> ingredients, FoodType foodType) {
+        List<Ingredient> ret = new ArrayList<>();
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getFoodType().equals(foodType)) {
+                ret.add(ingredient);
+            }
+        }
+        return ret;
     }
 }

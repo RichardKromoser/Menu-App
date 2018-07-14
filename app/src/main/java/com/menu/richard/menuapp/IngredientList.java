@@ -42,11 +42,11 @@ public class IngredientList extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ingredient_list,container,false);
 
-        ExpandableHeightGridView gridViewFruits = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientFruit);
-        ExpandableHeightGridView gridViewVegetables = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientVegetable);
-        ExpandableHeightGridView gridViewProteins = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientProtein);
-        ExpandableHeightGridView gridViewPantries = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientPantry);
-        ExpandableHeightGridView gridViewSpices = (ExpandableHeightGridView) view.findViewById(R.id.gridViewIngredientSpice);
+        ExpandableHeightGridView gridViewFruits = (ExpandableHeightGridView) view.findViewById(R.id.grid_view_ingredient_fruit);
+        ExpandableHeightGridView gridViewVegetables = (ExpandableHeightGridView) view.findViewById(R.id.grid_view_ingredient_vegetable);
+        ExpandableHeightGridView gridViewProteins = (ExpandableHeightGridView) view.findViewById(R.id.grid_view_ingredient_protein);
+        ExpandableHeightGridView gridViewPantries = (ExpandableHeightGridView) view.findViewById(R.id.grid_view_ingredient_pantry);
+        ExpandableHeightGridView gridViewSpices = (ExpandableHeightGridView) view.findViewById(R.id.grid_view_ingredient_spice);
 
         gridViewFruits.setExpanded(true);
         gridViewVegetables.setExpanded(true);

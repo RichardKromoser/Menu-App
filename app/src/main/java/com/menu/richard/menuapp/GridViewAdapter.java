@@ -47,16 +47,6 @@ public class GridViewAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-       /* try {
-            InputStream ims = getAssets().open(list_img.get(i));
-            // load image as Drawable
-            Drawable d = Drawable.createFromStream(ims, null);
-            // set image to ImageView
-            imageView.setImageDrawable(d);
-        }
-        catch(IOException ex) {
-            return;
-        }*/
         imageView.setImageResource(mThumbIds[position]);
         return imageView;
     }

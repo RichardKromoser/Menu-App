@@ -14,4 +14,7 @@
     <string name="ingredient_protein">Proteine</string>
     <string name="ingredient_pantry">Haltbares</string>
     <string name="ingredient_spice">Gewürze</string>
+    <string name="details_ingredient">Zutaten:</string>
+    <string name="details_instruction">Zubereitung:</string>
+    <string name="details_time">Gesamtzeit:</string>
 </resources>

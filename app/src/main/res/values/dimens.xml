@@ -5,4 +5,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="ingredient_header_text">30sp</dimen>
+    <dimen name="ingredient_header">40dp</dimen>
+    <dimen name="ingredient_grid_height">600dp</dimen>
+
+
 </resources>

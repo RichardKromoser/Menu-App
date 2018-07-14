@@ -9,4 +9,9 @@
     <string name="nav_header_title">MenuApp</string>
     <string name="nav_header_subtitle">Der Essensplaner</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="ingredient_fruit">Früchte</string>
+    <string name="ingredient_vegetable">Gemüse</string>
+    <string name="ingredient_protein">Proteine</string>
+    <string name="ingredient_pantry">Haltbares</string>
+    <string name="ingredient_spice">Gewürze</string>
 </resources>

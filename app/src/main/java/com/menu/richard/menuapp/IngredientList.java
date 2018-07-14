@@ -16,10 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.DBHandler.DatabaseOpenHelper;
+import com.menu.richard.menuapp.Entities.FoodType;
 import com.menu.richard.menuapp.Entities.Ingredient;
 import com.menu.richard.menuapp.Entities.Unit;
 
@@ -39,11 +41,17 @@ public class IngredientList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ingredient_list,container,false);
-        GridView gridView = (GridView) view.findViewById(R.id.gridviewIngredient);
-        List<Ingredient> ingredients = d.getIngredients();
 
-        ArrayAdapter<Ingredient> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ingredients);
-        gridView.setAdapter(adapter);
+        GridView gridViewFruits = (GridView) view.findViewById(R.id.gridViewIngredientFruit);
+
+        GridView gridViewVegetables = (GridView) view.findViewById(R.id.gridViewIngredientVegetable);
+        List<Ingredient> ingredients = d.getIngredients();
+        List<Unit> units = d.getUnits();
+
+        ArrayAdapter<Ingredient> adapterFruits = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ingredients);
+        ArrayAdapter<Unit> adapterVegetables = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, units);
+        gridViewFruits.setAdapter(adapterFruits);
+        gridViewVegetables.setAdapter(adapterVegetables);
         //returning our layout file
         return view;
        // return inflater.inflate(R.layout.ingredient_list, container, false);

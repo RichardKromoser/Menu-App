@@ -8,6 +8,8 @@
     <dimen name="ingredient_header_text">30sp</dimen>
     <dimen name="ingredient_header">40dp</dimen>
     <dimen name="ingredient_grid_height">600dp</dimen>
+    <dimen name="card_height">40dp</dimen>
+    <dimen name="text_size">16sp</dimen>
 
 
 </resources>

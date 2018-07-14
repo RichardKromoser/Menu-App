@@ -1,5 +1,6 @@
 package com.menu.richard.menuapp;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -27,8 +28,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity
         databaseAccess.open();
         //creating fragment object
         Fragment fragment = null;
+        Intent intent = null;
 
         //initializing the fragment object which is selected
         switch (itemId) {
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new IngredientList(databaseAccess);
                 break;
             case R.id.nav_recipe:
-                fragment = new RecipeIndex();
+                intent = new Intent(this, RecipeIndex.class);
                 break;
             case R.id.nav_meal:
                 fragment = new MealPlan();

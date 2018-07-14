@@ -25,6 +25,13 @@ public class Meal {
         this.instructions = instructions;
     }
 
+    public Meal(Bitmap image, Category category, String name, String totalTime) {
+        this.image = image;
+        this.category = category;
+        this.name = name;
+        this.totalTime = totalTime;
+    }
+
     public String getName() {
         return name;
     }

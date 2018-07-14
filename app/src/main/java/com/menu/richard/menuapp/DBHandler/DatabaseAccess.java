@@ -4,9 +4,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 
+import com.menu.richard.menuapp.Entities.Category;
 import com.menu.richard.menuapp.Entities.FoodType;
 import com.menu.richard.menuapp.Entities.Ingredient;
+import com.menu.richard.menuapp.Entities.Meal;
 import com.menu.richard.menuapp.Entities.Unit;
 
 import java.sql.SQLOutput;
@@ -129,13 +134,17 @@ public class DatabaseAccess {
      *
      * @return a List of Meals
      */
-    public List<String> getMeals() {
-        List<String> list = new ArrayList<>();
+    public List<Meal> getMeals() {
+        List<Meal> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM Meal", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
+        while (cursor.moveToNext()) {
+            byte[] image;
+            image = cursor.getBlob(cursor.getColumnIndex("image"));
+            Bitmap decodedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
+            Category category = Category.values()[cursor.getInt(cursor.getColumnIndex("category"))];
+            Meal m = new Meal(decodedImage, category, cursor.getString(cursor.getColumnIndex("name")),
+                    cursor.getString(cursor.getColumnIndex("time")));
+            list.add(m);
         }
         cursor.close();
         return list;

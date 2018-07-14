@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 
-public class DetailedMeal extends Fragment implements View.OnClickListener {
+public class DetailedMeal extends Fragment {
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detailed_meal,container,false);
         Button bIngredient = (Button) view.findViewById(R.id.buttonIngredient);
-        bIngredient.setOnClickListener(this);
         Button bInstruction = (Button) view.findViewById(R.id.buttonInstruction);
-        bInstruction.setOnClickListener(this);
+        view.findViewById(R.id.buttonIngredient).setOnClickListener(mListener);
+        view.findViewById(R.id.buttonInstruction).setOnClickListener(mListener);
+
         return view;
     }
 
@@ -28,15 +29,16 @@ public class DetailedMeal extends Fragment implements View.OnClickListener {
         getActivity().setTitle("Detailed Meal");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.buttonIngredient:
-                System.out.println("Ingredient");
-                break;
-            case R.id.buttonInstruction:
-                System.out.println("Instruction");
-                break;
+    private final View.OnClickListener mListener = new View.OnClickListener() {
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.buttonIngredient:
+                    System.out.println("Ingredient");
+                    break;
+                case R.id.buttonInstruction:
+                    System.out.println("Instruction");
+                    break;
+            }
         }
-    }
+    };
 }

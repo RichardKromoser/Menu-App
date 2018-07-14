@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/totalTime"
         style="@style/Base.TextAppearance.AppCompat.Subhead"
         android:layout_width="91dp"
         android:layout_height="28dp"
@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="56dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/Ingredient"
         style="@style/Base.TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         tools:layout_editor_absoluteY="136dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Instruction"
         style="@style/Base.TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,20 +63,6 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="271dp"
         tools:layout_editor_absoluteY="515dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="368dp"
-        android:layout_height="116dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="165dp"
-        tools:ignore="MissingConstraints" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="368dp"
-        android:layout_height="133dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="322dp"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView2"

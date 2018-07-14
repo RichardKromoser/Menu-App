@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //add this line to display menu1 when the activity is loaded
-        displaySelectedScreen(R.id.nav_ingredient);
+        displaySelectedScreen(R.id.grid_view_recipe_index);
     }
 
     @Override
@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_meal:
                 fragment = new MealPlan();
                 break;
+            case R.id.nav_details:
+                fragment = new DetailedMeal();
+                break;
         }
 
         //replacing the fragment
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
+        databaseAccess.close();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }

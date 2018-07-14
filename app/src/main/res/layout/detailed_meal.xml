@@ -43,7 +43,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonIngredient"
         android:layout_width="97dp"
         android:layout_height="37dp"
         android:text="Neue Zutat"
@@ -54,7 +54,7 @@
         tools:layout_editor_absoluteY="514dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonInstruction"
         android:layout_width="97dp"
         android:layout_height="36dp"
         android:text="Neuer Schritt"

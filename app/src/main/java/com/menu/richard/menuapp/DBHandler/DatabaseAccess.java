@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.menu.richard.menuapp.Entities.FoodType;
+import com.menu.richard.menuapp.Entities.Ingredient;
 import com.menu.richard.menuapp.Entities.Unit;
 
 import java.util.ArrayList;
@@ -108,13 +110,11 @@ public class DatabaseAccess {
      *
      * @return a List of Ingredients
      */
-    public List<String> getIngredients() {
-        List<String> list = new ArrayList<>();
+    public List<Ingredient> getIngredients() {
+        List<Ingredient> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM Ingredient", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
+        while (cursor.moveToNext()) {
+            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("name")), FoodType.values()[cursor.getColumnIndex("foodtype")]));
         }
         cursor.close();
         return list;

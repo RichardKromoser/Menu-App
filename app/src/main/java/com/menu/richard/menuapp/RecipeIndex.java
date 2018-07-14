@@ -6,16 +6,17 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 public class RecipeIndex extends Fragment {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //returning our layout file
-        return inflater.inflate(R.layout.recipe_index, container, false);
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.recipe_index,container,false);
+        GridView gridView = (GridView) view.findViewById(R.id.gridviewRecipe);
+        gridView.setAdapter(new GridViewAdapter(view.getContext())); // uses the view to get the context instead of getActivity().
+        return view;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

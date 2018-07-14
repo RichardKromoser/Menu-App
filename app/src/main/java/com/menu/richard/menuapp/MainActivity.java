@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -87,6 +85,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void displaySelectedScreen(int itemId) {
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
 
         //creating fragment object
         Fragment fragment = null;
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity
         //initializing the fragment object which is selected
         switch (itemId) {
             case R.id.nav_ingredient:
-                fragment = new IngredientList();
+                fragment = new IngredientList(databaseAccess);
                 break;
             case R.id.nav_recipe:
                 fragment = new RecipeIndex();

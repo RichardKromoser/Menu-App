@@ -5,15 +5,16 @@
         <item
             android:id="@+id/nav_meal"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Essensplan" />
+            android:title="@string/meal_plan" />
         <item
             android:id="@+id/nav_recipe"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Rezept Index" />
+            android:title="@string/recipe_index" />
         <item
             android:id="@+id/nav_ingredient"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Zutatenliste" />
+            android:title="@string/ingredients"
+            android:checked="true"/>
         <item
             android:id="@+id/nav_details"
             android:icon="@drawable/ic_menu_gallery"

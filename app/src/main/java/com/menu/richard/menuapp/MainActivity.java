@@ -5,45 +5,115 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
-import com.menu.richard.menuapp.Entities.Unit;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    //private GridView gridView;
+public class MainActivity extends AppCompatActivity {
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        setupDrawerContent(navigationView);
+
+        toggle = setupDrawerToggle();
+
         drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //add this line to display menu1 when the activity is loaded
-        displaySelectedScreen(R.id.grid_view_recipe_index);
     }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not require it
+        // and will not render the hamburger icon without it.
+        return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        toggle.onConfigurationChanged(newConfig);
+    }
+
+    private void selectDrawerItem(MenuItem menuItem) {
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch (menuItem.getItemId()) {
+            case R.id.nav_ingredient:
+                fragmentClass = IngredientList.class;
+                break;
+            case R.id.nav_meal:
+                fragmentClass = MealPlan.class;
+                break;
+            case R.id.nav_recipe:
+                fragmentClass = RecipeIndex.class;
+                break;
+            case R.id.nav_details:
+                fragmentClass = DetailedMeal.class;
+                break;
+            default:
+                fragmentClass = IngredientList.class;
+        }
+
+        try {
+            fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class).newInstance(databaseAccess);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawerLayout.closeDrawers();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -56,69 +126,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //adds the 3 dots on top right
-      //  getMenuInflater().inflate(R.menu.activity_navigation_drawer, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        //calling the method displayselectedscreen and passing the id of selected menu
-        displaySelectedScreen(item.getItemId());
-        //make this method blank
-        return true;
-    }
-
-    private void displaySelectedScreen(int itemId) {
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        //creating fragment object
-        Fragment fragment = null;
-        Intent intent = null;
-
-        //initializing the fragment object which is selected
-        switch (itemId) {
-            case R.id.nav_ingredient:
-                fragment = new IngredientList(databaseAccess);
-                break;
-            case R.id.nav_recipe:
-                intent = new Intent(this, RecipeIndex.class);
-                break;
-            case R.id.nav_meal:
-                fragment = new MealPlan();
-                break;
-            case R.id.nav_details:
-                fragment = new DetailedMeal();
-                break;
-        }
-
-        //replacing the fragment
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        }
-        databaseAccess.close();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
     }
 
 }

@@ -19,4 +19,7 @@
     <string name="details_time">Gesamtzeit:</string>
     <string name="details_button_ingredient">Neue Zutat</string>
     <string name="details_button_instruction">Neuer Schritt</string>
+    <string name="ingredients">Zutaten</string>
+    <string name="recipe_index">Rezept Index</string>
+    <string name="meal_plan">Essensplan</string>
 </resources>

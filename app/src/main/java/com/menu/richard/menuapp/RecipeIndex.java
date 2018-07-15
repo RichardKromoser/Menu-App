@@ -1,19 +1,13 @@
 package com.menu.richard.menuapp;
 
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.Entities.Meal;
@@ -21,21 +15,40 @@ import com.menu.richard.menuapp.Entities.Meal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeIndex extends AppCompatActivity {
+@SuppressLint("ValidFragment")
+public class RecipeIndex extends Fragment {
 
-        GridView simpleList;
-        List<Meal> birdList;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            DatabaseAccess d = DatabaseAccess.getInstance(this);
-            d.open();
-            birdList = d.getMeals();
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            simpleList = (GridView) findViewById(R.id.grid_view_ingredient_fruit);
+        GridView gridView;
+        List<Meal> meals;
+        DatabaseAccess d;
+        private static RecipeAdapter adapter;
 
-            GridViewAdapter myAdapter=new GridViewAdapter(this,R.layout.recipe_meal,(ArrayList)birdList);
-            simpleList.setAdapter(myAdapter);
+    public RecipeIndex(DatabaseAccess d) {
+        this.d = d;
+    }
 
-        }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.recipe_index,container,false);
+
+        GridView gridView = (GridView) view.findViewById(R.id.grid_view_recipe_index);
+
+        List<Meal> meals = d.getMeals();
+
+        gridView.setAdapter(new RecipeAdapter(meals, getContext()));
+
+        //returning our layout file
+        return view;
+        // return inflater.inflate(R.layout.ingredient_list, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("Rezept Index");
+    }
+
 }

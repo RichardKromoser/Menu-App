@@ -120,7 +120,7 @@ public class DatabaseAccess {
      */
     public List<Ingredient> getIngredients() {
         List<Ingredient> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("select * from Ingredient", null);
+        Cursor cursor = database.rawQuery("select * from Ingredient order by name", null);
         while (cursor.moveToNext()) {
             Ingredient i = new Ingredient(cursor.getString(cursor.getColumnIndex("name")), FoodType.values()[cursor.getInt(cursor.getColumnIndex("foodtype"))]);
             list.add(i);
@@ -136,7 +136,7 @@ public class DatabaseAccess {
      */
     public List<Meal> getMeals() {
         List<Meal> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM Meal", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Meal order by name", null);
         while (cursor.moveToNext()) {
             byte[] image;
             image = cursor.getBlob(cursor.getColumnIndex("image"));

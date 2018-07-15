@@ -12,16 +12,12 @@ import android.widget.GridView;
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.Entities.Meal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressLint("ValidFragment")
 public class RecipeIndex extends Fragment {
 
-        GridView gridView;
-        List<Meal> meals;
         DatabaseAccess d;
-        private static RecipeAdapter adapter;
 
     public RecipeIndex(DatabaseAccess d) {
         this.d = d;
@@ -40,7 +36,6 @@ public class RecipeIndex extends Fragment {
 
         //returning our layout file
         return view;
-        // return inflater.inflate(R.layout.ingredient_list, container, false);
     }
 
 

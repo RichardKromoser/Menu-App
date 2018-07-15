@@ -32,7 +32,7 @@ public class RecipeIndex extends AppCompatActivity {
             birdList = d.getMeals();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            simpleList = (GridView) findViewById(R.id.grid_view_recipe_index);
+            simpleList = (GridView) findViewById(R.id.grid_view_ingredient_fruit);
 
             GridViewAdapter myAdapter=new GridViewAdapter(this,R.layout.recipe_meal,(ArrayList)birdList);
             simpleList.setAdapter(myAdapter);

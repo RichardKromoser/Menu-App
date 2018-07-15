@@ -22,4 +22,7 @@
     <string name="ingredients">Zutaten</string>
     <string name="recipe_index">Rezept Index</string>
     <string name="meal_plan">Essensplan</string>
+    <string name="search_title">Suche</string>
+    <string name="search_hint">Rezepte</string>
+
 </resources>

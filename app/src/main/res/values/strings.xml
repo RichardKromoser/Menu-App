@@ -17,4 +17,6 @@
     <string name="details_ingredient">Zutaten:</string>
     <string name="details_instruction">Zubereitung:</string>
     <string name="details_time">Gesamtzeit:</string>
+    <string name="details_button_ingredient">Neue Zutat</string>
+    <string name="details_button_instruction">Neuer Schritt</string>
 </resources>

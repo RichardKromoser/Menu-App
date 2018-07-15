@@ -32,7 +32,7 @@ public class RecipeIndex extends Fragment {
 
         List<Meal> meals = d.getMeals();
 
-        gridView.setAdapter(new RecipeAdapter(meals, getContext()));
+        gridView.setAdapter(new RecipeAdapter(meals, getContext(),d));
 
         //returning our layout file
         return view;

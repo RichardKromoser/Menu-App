@@ -1,6 +1,9 @@
 package com.menu.richard.menuapp;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.Entities.Meal;
 
+import java.sql.DatabaseMetaData;
 import java.util.List;
 
 public class RecipeAdapter extends BaseAdapter {
@@ -18,10 +23,12 @@ public class RecipeAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
     List<Meal> meals;
     Context context;
+    DatabaseAccess d;
 
-    public RecipeAdapter(List<Meal> meals, Context context) {
+    public RecipeAdapter(List<Meal> meals, Context context,DatabaseAccess d) {
         this.meals = meals;
         this.context = context;
+        this.d =d;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -58,9 +65,20 @@ public class RecipeAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked " + meals.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Class fragmentClass = DetailedMeal.class;
+                Fragment fragment = null;
+                try {
+                    fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class, Meal.class).newInstance(d, meals.get(position));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+               FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+               fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
             }
         });
+
+
 
         return rowView;
     }

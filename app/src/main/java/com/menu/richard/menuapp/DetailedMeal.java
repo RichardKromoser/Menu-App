@@ -4,21 +4,35 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
+import com.menu.richard.menuapp.Entities.Ingredient;
+import com.menu.richard.menuapp.Entities.Meal;
+import com.menu.richard.menuapp.Entities.Unit;
+
+import java.util.List;
+import java.util.Map;
 
 @SuppressLint("ValidFragment")
 public class DetailedMeal extends Fragment {
     DatabaseAccess d;
+    String title;
+    Meal m;
 
     @SuppressLint("ValidFragment")
-    public DetailedMeal(DatabaseAccess d) {
+    public DetailedMeal(DatabaseAccess d, Meal meal) {
         this.d = d;
+        this.m = meal;
     }
 
     @Override
@@ -29,14 +43,35 @@ public class DetailedMeal extends Fragment {
         view.findViewById(R.id.buttonIngredient).setOnClickListener(mListener);
         view.findViewById(R.id.buttonInstruction).setOnClickListener(mListener);
 
+        title=m.getName();
+
+        TextView totaltime = (TextView)view.findViewById(R.id.textTime);
+        totaltime.setText(m.getTotalTime());
+
+        ImageView mealImage = (ImageView) view.findViewById(R.id.detailImage);
+        mealImage.setImageBitmap(m.getImage());
+
+        Map<Ingredient,Pair<Float,Unit>> ingredient = m.getIngredients();
+        ListView ingredients = view.findViewById(R.id.listviewIngredients);
+       // ArrayAdapter<Map<Ingredient,Pair<Float,Unit>>> adapterIngredient = new ArrayAdapter<Map<Ingredient,Pair<Float,Unit>>>(getActivity(), android.R.layout.simple_list_item_1, ingredient);
+       // ingredients.setAdapter(adapterIngredient);
+
+        List<String> instruction = m.getInstructions();
+        ListView instructions = view.findViewById(R.id.listviewInstruction);
+        ArrayAdapter<String> adapterInstruction = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, instruction);
+        instructions.setAdapter(adapterInstruction);
+
+
         return view;
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Detailed Meal");
+        getActivity().setTitle(title);
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {

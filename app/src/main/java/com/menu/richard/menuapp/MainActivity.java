@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_recipe:
                 fragmentClass = RecipeIndex.class;
                 break;
-            case R.id.nav_details:
-                fragmentClass = DetailedMeal.class;
-                break;
             default:
                 fragmentClass = IngredientList.class;
         }

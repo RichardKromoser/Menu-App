@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         toggle = setupDrawerToggle();
 
         drawerLayout.addDrawerListener(toggle);
+
+    //    ObjectMapper mapper = new ObjectMapper();
+      //  String stringToAddOnSQLITE = writeValueAsString( your object here );
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

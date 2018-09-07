@@ -143,7 +143,7 @@ public class DatabaseAccess {
             Bitmap decodedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
             Category category = Category.values()[cursor.getInt(cursor.getColumnIndex("category"))];
             Meal m = new Meal(decodedImage, category, cursor.getString(cursor.getColumnIndex("name")),
-                    cursor.getString(cursor.getColumnIndex("time")));
+                    cursor.getString(cursor.getColumnIndex("time")),cursor.getString(cursor.getColumnIndex("ingredients")),cursor.getString(cursor.getColumnIndex("instructions")));
             list.add(m);
         }
         cursor.close();

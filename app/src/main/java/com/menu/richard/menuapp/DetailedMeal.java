@@ -51,13 +51,19 @@ public class DetailedMeal extends Fragment {
         ImageView mealImage = (ImageView) view.findViewById(R.id.detailImage);
         mealImage.setImageBitmap(m.getImage());
 
-        Map<Ingredient,Pair<Float,Unit>> ingredient = m.getIngredients();
-        ListView ingredients = view.findViewById(R.id.listviewIngredients);
-       // ArrayAdapter<Map<Ingredient,Pair<Float,Unit>>> adapterIngredient = new ArrayAdapter<Map<Ingredient,Pair<Float,Unit>>>(getActivity(), android.R.layout.simple_list_item_1, ingredient);
-       // ingredients.setAdapter(adapterIngredient);
+        List<String> ingredient = m.getIngredients();
+        ExpandableHeightGridView ingredients = view.findViewById(R.id.listviewIngredients);
+
+        ingredients.setExpanded(true);
+
+        ArrayAdapter<String> adapterIngredient = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ingredient);
+        ingredients.setAdapter(adapterIngredient);
 
         List<String> instruction = m.getInstructions();
-        ListView instructions = view.findViewById(R.id.listviewInstruction);
+        ExpandableHeightGridView instructions = view.findViewById(R.id.listviewInstruction);
+
+        instructions.setExpanded(true);
+
         ArrayAdapter<String> adapterInstruction = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, instruction);
         instructions.setAdapter(adapterInstruction);
 

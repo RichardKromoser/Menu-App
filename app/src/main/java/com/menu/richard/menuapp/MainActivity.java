@@ -13,12 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
+import com.menu.richard.menuapp.Entities.Meal;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
+    private List<Meal> meals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(toggle);
 
-    //    ObjectMapper mapper = new ObjectMapper();
-      //  String stringToAddOnSQLITE = writeValueAsString( your object here );
+        /**
+         * This Part is used to get all the meals at the start of the app
+         */
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        meals = databaseAccess.getMeals();
+
+        /**
+         * End of getting all meals
+         */
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -96,7 +109,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class).newInstance(databaseAccess);
+            if (menuItem.getItemId() == R.id.nav_recipe){
+                fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class, List.class).newInstance(databaseAccess, meals);
+            } else {
+                fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class).newInstance(databaseAccess);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

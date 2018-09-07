@@ -18,9 +18,11 @@ import java.util.List;
 public class RecipeIndex extends Fragment {
 
         DatabaseAccess d;
+        List<Meal> meals;
 
-    public RecipeIndex(DatabaseAccess d) {
+    public RecipeIndex(DatabaseAccess d, List<Meal> meals) {
         this.d = d;
+        this.meals = meals;
     }
 
     @Nullable
@@ -29,8 +31,6 @@ public class RecipeIndex extends Fragment {
         View view = inflater.inflate(R.layout.recipe_index,container,false);
 
         GridView gridView = (GridView) view.findViewById(R.id.grid_view_recipe_index);
-
-        List<Meal> meals = d.getMeals();
 
         gridView.setAdapter(new RecipeAdapter(meals, getContext(),d));
 

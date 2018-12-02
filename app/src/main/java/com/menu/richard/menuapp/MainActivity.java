@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.Entities.Meal;
+import com.menu.richard.menuapp.Entities.WelcomeScreen;
 
 import java.util.List;
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         toggle = setupDrawerToggle();
 
         drawerLayout.addDrawerListener(toggle);
-
         /**
          * This Part is used to get all the meals at the start of the app
          */
@@ -53,6 +53,29 @@ public class MainActivity extends AppCompatActivity {
         /**
          * End of getting all meals
          */
+
+        Fragment fragment = null;
+        Class fragmentClass = WelcomeScreen.class;
+
+        try {
+                fragment = (Fragment) fragmentClass.getDeclaredConstructor().newInstance();
+
+            getSupportFragmentManager().beginTransaction().add(fragment, "welcome")
+                    // Add this transaction to the back stack
+                    .addToBackStack(null)
+                    .commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
+
+
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

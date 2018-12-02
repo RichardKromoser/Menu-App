@@ -1,0 +1,21 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/headerMain"
+        android:maxLines="10"
+        android:text="Willkommen \n in der Chef App"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/headerMain"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher" />
+</RelativeLayout>

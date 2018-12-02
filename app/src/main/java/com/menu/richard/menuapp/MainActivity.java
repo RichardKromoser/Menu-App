@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
                 fragment = (Fragment) fragmentClass.getDeclaredConstructor(DatabaseAccess.class).newInstance(databaseAccess);
             }
 
+            getSupportFragmentManager().beginTransaction().add(fragment, "detail")
+                    // Add this transaction to the back stack
+                    .addToBackStack(null)
+                    .commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,8 +73,13 @@ public class RecipeAdapter extends BaseAdapter {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
                FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
-               fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });

@@ -1,4 +1,4 @@
-package com.menu.richard.menuapp.Entities;
+package com.menu.richard.menuapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import com.menu.richard.menuapp.DBHandler.DatabaseAccess;
 import com.menu.richard.menuapp.Entities.Meal;
-import com.menu.richard.menuapp.Entities.WelcomeScreen;
 
 import java.util.List;
 
